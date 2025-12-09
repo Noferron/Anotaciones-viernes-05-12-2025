@@ -33,6 +33,8 @@ Añadimos estados nuevos. Antes teniamos usuario y token, ahora añadimos produc
     Pedimos está dentro del estado "usuario" y "token" y si es así que nos devuelva TRUE. 
     ![alt text](image-67.png)
 
+
+//Esto no vale!!! desde aquí hasta el siguiente comentario
 -->Función agregarAlCarrito 
     --> 1º Comprobamos si el cliente está loggeado:
         En este caso la comprobación la realizamos con la negación, es decir, si el usuario no está logado, según nos indique la función estaLogueado(), devolverá una ventana de alerta y cortará la función y no seguirá ejecutandose. 
@@ -103,3 +105,57 @@ Añadimos estados nuevos. Antes teniamos usuario y token, ahora añadimos produc
 
 --> Función calcularTotal () 
     --> 
+    //Hasta aquí 
+
+# 34.- Carrito
+ *
+    --> Función cargarProductosTienda()
+        --> Aquí nos traemos la función obtenerProductos() y la metemos en una variable para usarla como parámetro. "Lista" es nuestra variable que recoge un array llenandose con "datos" que son los datos que trae la función "obtenerProductos()".
+        ![alt text](image-80.png)
+        --> Llamamos a la función mostrarProductosTienda() y la indicamos el parámetro "lista".  
+        ![alt text](image-79.png)
+    *
+    --> Función mostrarProductosTienda(lista)
+        --> Creamos la relación desde script con el DOM a traves de document.getElementById con la variable "contenedor". 
+        ![alt text](image-81.png)
+
+        Qué queremos hacer con esto? 
+*
+        Queremos que nos cree un div con todos los datos de lista y para esto usamos un condicional en el que preguntamos si "contenedor" no existe haz lo siguiente: 
+        ![alt text](image-82.png)
+
+        --> Creamos un evento para los botones, pero, por qué?
+        Como los botones se van a crear de forma automática para cada uno de los productos necesitamos que cada botón sepa a que producto corresponde a cada uno.
+*
+        Cómo sabe esto? 
+        1º --> En el condicional anterior le indicamos los datos que va a recoger: 
+        ![alt text](image-83.png)
+        Como vemos, dentro de la etiqueta botón introducimos "data" donde indicamos con qué lo vamos a rellenar. 
+
+        Y como se llena el botón? 
+
+      Pues creamos un forEach para recorrer el array que le traemos y dentro     creamos el evento a escuchar "click" donde le indicamos que "producto" es un objeto que contiene los siguientes datos: 
+            --> id: Number(btn.dataset.id) --> esto quiere decir, que id es un número "Number" y que llene "dataset" con id. 
+            Con "Number" parseamos o cambiamos el dato, que viene como string a number o int "1" a 1
+            --> nombre: btn.dataset.nombre
+            --> precio: Number(btn.dataset.precio)
+ **           ![alt text](image-84.png)
+       
+       --> Por último, llamamos a la función agregarAlCarrito(producto) que contiene el parámetro "producto" que es la variable que hemos declarado dentro del forEach y con esto llenamos de datos la función agregarAlCarrito().
+ **       ![alt text](image-85.png)
+
+ IMPORTANTE, EN CERRAR SESIÓN INDICAMOS QUE BORRE CARRITO DE LOCALSTORAGE PARA QUE NO SE QUEDE COLGADO  
+ ```js
+ estado.carrito = { items: [], total: 0 };
+ localStorage.removeItem("carrito");
+ ```
+
+*    --> Función cargarCarrito()
+
+        Esta función es para que recupere el carrito si el usuario salió sin cerrar sesión. 
+
+        
+        --> Creamos la variable "guardado" que recogerá los datos de localStorage que con el método ."getItem" y que lo guarde en el campo "carrito". 
+        ![alt text](image-86.png)
+
+        --> Ahora que tenemos "guardado" lo usamos para generar un condicional con el que si le decimos que si existe un carrito

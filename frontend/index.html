@@ -106,6 +106,9 @@
                 </div>
             </section>
 
+
+            
+
  <section class="orders-section hidden" id="ordersSection">
                 
                 
@@ -136,6 +139,38 @@
             </section>
 
             <button id="carro"> Carrito </button>
+
+
+            <!-- 🛒 SECCIÓN PRIVADA: solo visible cuando el usuario está logueado -->
+<section class="tienda-usuario" id="tiendaSection">
+  <h2>🛒 Tienda (solo usuarios registrados)</h2>
+
+  <div class="tienda-layout">
+    <!-- Columna izquierda: productos -->
+    <div class="tienda-productos">
+      <h3>Productos disponibles</h3>
+      <div id="productosTienda"></div>
+    </div>
+
+    <!-- Columna derecha: carrito -->
+    <aside class="tienda-carrito">
+      <h3>🧺 Tu carrito</h3>
+
+      <!-- Aquí se pintan los productos del carrito -->
+      <div id="carritoItems"></div>
+
+      <!-- Total del carrito debajo de la lista -->
+      <p class="carrito-total">
+        Total carrito: <span id="totalCarrito">0.00</span> €
+      </p>
+
+      <!-- Botón finalizar compra debajo del total -->
+      <button id="finalizarCompra" class="btn-finalizar">
+        ✅ Finalizar compra
+      </button>
+    </aside>
+  </div>
+</section>
 
 
  <script src="script.js"></script> 

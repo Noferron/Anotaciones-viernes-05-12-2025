@@ -5,6 +5,7 @@ import { verificarToken } from '../middleware/auth.middleware.js';
 
 const router = Router();
 
+router.use(verificarToken);
 /**
  * ==========================================
  * 🛒 RUTAS DE PEDIDOS
